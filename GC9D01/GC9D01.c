@@ -841,9 +841,11 @@ void GC9D01_FillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
   }
   
 	// заполняем буфер кадра
-	for( uint16_t i = 0; i < h; i++ ){
-		for( uint16_t j = 0; j < w; j++ ){
-			buff_frame[( y + i ) * GC9D01_Width + x + j] = ((color & 0xFF)<<8) | (color >> 8 );
+	if( x >=0 && y >=0 ){
+		for( uint16_t i = 0; i < h; i++ ){
+			for( uint16_t j = 0; j < w; j++ ){
+				buff_frame[( y + i ) * GC9D01_Width + x + j] = ((color & 0xFF)<<8) | (color >> 8 );
+			}
 		}
 	}
 	
